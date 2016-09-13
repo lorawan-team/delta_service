@@ -1,6 +1,6 @@
 <?php
 
-namespace Delta\DeltaService\Example;
+namespace Delta\DeltaService;
 
 
 use Illuminate\Database\Eloquent\Model;
