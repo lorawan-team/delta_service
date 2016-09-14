@@ -1,12 +1,12 @@
 <?php
 
-namespace Delta\DeltaService\Devices;
+namespace Delta\DeltaService\Measurements;
 
 use Delta\DeltaService\AbstractRepository;
 
-class DeviceRepository extends AbstractRepository implements DeviceRepositoryInterface
+class MeasurementRepository extends AbstractRepository implements MeasurementRepositoryInterface
 {
-    protected $model = DeviceModel::class;
+    protected $model = MeasurementModel::class;
 
     public function findAll() {
         return $this->createModel()->all();

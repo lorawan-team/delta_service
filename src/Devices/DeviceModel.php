@@ -20,11 +20,13 @@ class DeviceModel extends AbstractModel  implements DeviceModelInterface
         return $this->test;
     }
 
-    /**
-     * Get the phone record associated with the user.
-     */
-    public function sensor()
+    public function sensors()
     {
         return $this->hasMany('Delta\DeltaService\Sensors\SensorModel');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\User', 'users_id', 'device_id');
     }
 }
