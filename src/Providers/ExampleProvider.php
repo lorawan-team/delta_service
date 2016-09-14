@@ -17,9 +17,9 @@ class ExampleProvider extends AbstractServiceProvider
      */
     public function boot()
     {
-        //$this->setupConfig('delta_service');
-        //$this->setupMigrations();
-        //$this->setupConnection('delta_service', 'delta_service.connection');
+        $this->setupConfig('delta_service');
+        $this->setupMigrations();
+        $this->setupConnection('delta_service', 'delta_service.connection');
     }
 
     /**
