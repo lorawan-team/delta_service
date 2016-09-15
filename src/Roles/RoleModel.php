@@ -1,10 +1,11 @@
 <?php
 
-namespace Delta\DeltaService\Measurements;
+namespace Delta\DeltaService\Roles;
 
+use App\User;
 use Delta\DeltaService\AbstractModel;
 
-class MeasurementModel extends AbstractModel  implements MeasurementModelInterface
+class RoleModel extends AbstractModel  implements RoleModelInterface
 {
     protected $table = 'sensor_data';
     protected $dates = ['created_at'];
@@ -14,11 +15,12 @@ class MeasurementModel extends AbstractModel  implements MeasurementModelInterfa
 
     public function getTest()
     {
+
         return $this->test;
     }
 
     public function sensor()
     {
-        return $this->belongsTo('Delta\DeltaService\Sensors\SensorModel', 'sensor_id', 'id');
+        return $this->belongsTo('', 'device_id', 'id');
     }
 }
