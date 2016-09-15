@@ -22,11 +22,11 @@ class DeviceModel extends AbstractModel  implements DeviceModelInterface
 
     public function sensors()
     {
-        return $this->hasMany('Delta\DeltaService\Sensors\SensorModel');
+        return $this->hasMany('Delta\DeltaService\Sensors\SensorModel', 'device_id', 'id');
     }
 
     public function users()
     {
-        return $this->hasMany('App\User', 'users_id', 'device_id');
+        return $this->belongsToMany('App\User', 'users_device', 'device_id', 'users_id');
     }
 }

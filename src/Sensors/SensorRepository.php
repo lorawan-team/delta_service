@@ -1,12 +1,12 @@
 <?php
 
-namespace Delta\DeltaService\Roles;
+namespace Delta\DeltaService\Sensors;
 
 use Delta\DeltaService\AbstractRepository;
 
-class RoleRepository extends AbstractRepository implements RoleRepositoryInterface
+class SensorRepository extends AbstractRepository implements SensorRepositoryInterface
 {
-    protected $model = RoleModel::class;
+    protected $model = SensorModel::class;
 
     public function findAll() {
         return $this->createModel()->all();

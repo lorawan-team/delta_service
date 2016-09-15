@@ -7,8 +7,8 @@ use Delta\DeltaService\AbstractModel;
 
 class RoleModel extends AbstractModel  implements RoleModelInterface
 {
-    protected $table = 'sensor_data';
-    protected $dates = ['created_at'];
+    protected $table = 'role';
+    protected $dates = ['created_at', 'updated_at'];
     public $timestamps = true;
 
     protected $test = 'basic string';
@@ -19,8 +19,8 @@ class RoleModel extends AbstractModel  implements RoleModelInterface
         return $this->test;
     }
 
-    public function sensor()
+    public function user()
     {
-        return $this->belongsTo('', 'device_id', 'id');
+        return $this->belongsTo('App\User', 'users_id', 'id');
     }
 }

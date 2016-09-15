@@ -2,8 +2,3 @@
 
 namespace Delta\DeltaService;
 
-
-class DatabaseHelpers
-{
-
-}
