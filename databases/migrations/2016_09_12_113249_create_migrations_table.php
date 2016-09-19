@@ -12,7 +12,7 @@ class CreateSensorDataTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('sensor_data', function(Blueprint $table)
+		Schema::create('migrations', function(Blueprint $table)
 		{
             $table->increments('id');
 			$table->integer('sensor_id')->unsigned()->index('fk_sensor_data_sensor1_idx');
