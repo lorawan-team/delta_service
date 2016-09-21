@@ -30,7 +30,7 @@ class CreateSensorDataTable extends Migration {
 	public function down()
 	{
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-		Schema::drop('sensor_data');
+		Schema::drop('migrations');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 	}
 
