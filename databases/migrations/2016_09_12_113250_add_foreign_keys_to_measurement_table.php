@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddForeignKeysToMeasurementsTable extends Migration {
+class AddForeignKeysToMeasurementTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class AddForeignKeysToMeasurementsTable extends Migration {
      */
     public function up()
     {
-        Schema::table('measurements', function(Blueprint $table)
+        Schema::table('measurement', function(Blueprint $table)
         {
-            $table->foreign('sensor_id', 'fk_measurements_sensor1')->references('id')->on('sensor')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('sensor_id', 'fk_measurement_sensor1')->references('id')->on('sensor')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -26,9 +26,9 @@ class AddForeignKeysToMeasurementsTable extends Migration {
      */
     public function down()
     {
-        Schema::table('measurements', function(Blueprint $table)
+        Schema::table('measurement', function(Blueprint $table)
         {
-            $table->dropForeign('fk_measurements_sensor1');
+            $table->dropForeign('fk_measurement_sensor1');
         });
     }
 

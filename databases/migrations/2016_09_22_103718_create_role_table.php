@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateMeasurementTable extends Migration {
-
+class CreateRoleTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,15 +13,12 @@ class CreateMeasurementTable extends Migration {
      */
     public function up()
     {
-        Schema::create('measurement', function(Blueprint $table)
-        {
+        Schema::create('role', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('sensor_id')->unsigned()->index('fk_measurements_sensor1_idx');
-            $table->JSON('value');
-            $table->dateTime('created_at');
+            $table->string('role');
+            $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -30,8 +28,7 @@ class CreateMeasurementTable extends Migration {
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('measurement');
+        Schema::drop('role');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
-
 }
