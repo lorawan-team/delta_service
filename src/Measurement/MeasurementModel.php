@@ -6,7 +6,7 @@ use Delta\DeltaService\AbstractModel;
 
 class MeasurementModel extends AbstractModel  implements MeasurementModelInterface
 {
-    protected $table = 'measurements';
+    protected $table = 'measurement';
     protected $dates = ['created_at'];
     public $timestamps = true;
 

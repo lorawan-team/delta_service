@@ -15,7 +15,7 @@ class CreateMeasurementTable extends Migration {
         Schema::create('measurement', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('sensor_id')->unsigned()->index('fk_measurements_sensor1_idx');
+            $table->integer('sensor_id')->unsigned()->index('fk_measurement_sensor1_idx');
             $table->JSON('value');
             $table->dateTime('created_at');
         });
