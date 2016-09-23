@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class UserTableSeeder extends seeder
+class UserTableSeeder extends Seeder
 {
     public function run()
     {
