@@ -13,6 +13,6 @@ class RoleRepository extends AbstractRepository implements RoleRepositoryInterfa
     }
 
     public function findById($id) {
-        return $this->createModel()->where('id', $id)->get();
+        return $this->createModel()->findOrFail('id', $id);
     }
 }

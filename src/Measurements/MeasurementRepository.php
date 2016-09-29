@@ -16,7 +16,7 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
     }
 
     public function findById($id) {
-        return $this->createModel()->where('id', $id)->get();
+        return $this->createModel()->findOrFail($id);
     }
 
     public function store($data)
@@ -29,7 +29,7 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
 
     public function deleteById($id)
     {
-        return $this->createModel()->where('id', $id)->delete();
+        return $this->createModel()->findOrFail($id)->delete();
     }
 
     public function removeOlderThan(DateTime $date) {
