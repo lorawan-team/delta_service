@@ -13,6 +13,6 @@ class SensorRepository extends AbstractRepository implements SensorRepositoryInt
     }
 
     public function findById($id) {
-        return $this->createModel()->where('id', $id)->get();
+        return $this->createModel()->findOrFail($id);
     }
 }

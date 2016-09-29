@@ -46,7 +46,7 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      * @return mixed
      */
     public function findById($id) {
-        return $this->createModel()->where('id', $id)->first();
+        return $this->createModel()->findOrFail($id);
     }
 
     /**
@@ -76,7 +76,7 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      *
      * @param DeviceModel $device
      */
-    public function delete($device) {
-        $device->delete();
+    public function deleteById($id) {
+        return $this->createModel()->findOrFail($id)->delete();
     }
 }
