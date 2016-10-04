@@ -55,6 +55,9 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
     public function store($data) {
         $model = $this->createModel();
         $model->setAttribute('name', $data['name']);
+        $model->setAttribute('alias', $data['alias']);
+        $model->setAttribute('token', $data['token']);
+        $model->setAttribute('description', $data['description']);
         $model->save();
     }
 
@@ -66,6 +69,9 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      */
     public function update($model, $data) {
         $model->setAttribute('name',$data['name']);
+        $model->setAttribute('alias', $data['alias']);
+        $model->setAttribute('token', $data['token']);
+        $model->setAttribute('description', $data['description']);
         $model->save();
     }
 

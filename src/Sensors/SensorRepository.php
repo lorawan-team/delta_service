@@ -36,6 +36,8 @@ class SensorRepository extends AbstractRepository implements SensorRepositoryInt
         $model = $this->createModel();
         $model->setAttribute('name', $data['name']);
         $model->setAttribute('device_id', $data['device_id']);
+        $model->setAttribute('alias', $data['alias']);
+        $model->setAttribute('description', $data['description']);
         $model->save();
     }
 
@@ -47,6 +49,9 @@ class SensorRepository extends AbstractRepository implements SensorRepositoryInt
      */
     public function update($model, $data) {
         $model->setAttribute('name', $data['name']);
+        $model->setAttribute('device_id', $data['device_id']);
+        $model->setAttribute('alias', $data['alias']);
+        $model->setAttribute('description', $data['description']);
         $model->save();
     }
 
