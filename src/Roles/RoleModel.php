@@ -11,14 +11,6 @@ class RoleModel extends AbstractModel  implements RoleModelInterface
     protected $dates = ['created_at', 'updated_at'];
     public $timestamps = true;
 
-    protected $test = 'basic string';
-
-    public function getTest()
-    {
-
-        return $this->test;
-    }
-
     public function user()
     {
         return $this->belongsTo('App\User', 'users_id', 'id');

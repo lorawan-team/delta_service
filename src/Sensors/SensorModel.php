@@ -11,15 +11,8 @@ class SensorModel extends AbstractModel  implements SensorModelInterface
     use SoftDeletes;
 
     protected $table = 'sensor';
-    protected $dates = ['created_at', ];
+    protected $dates = ['created_at', 'updated_at'];
     public $timestamps = true;
-
-    protected $test = 'basic string';
-
-    public function getTest()
-    {
-        return $this->test;
-    }
 
     public function sensor()
     {

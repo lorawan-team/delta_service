@@ -13,27 +13,25 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
     /**
      * Find all devices
      *
-     * @param $data
+     * @param $userId
      * @return mixed
      */
-    public function findAll($data) {
+    public function findAll($userId) {
 
-        $results = [];
-
-        if(! array_key_exists('user_id', $data)) {
+        if(is_null($userId)) {
             // get all devices without users
-            $results = $this->createModel()->whereDoesntHave('users');
+            $results = $this->createModel()->whereDoesntHave('users')->get();
         } else {
-            $userId = $data['user_id'];
 
             // get by user id
-            $results1 = $this->createModel()->with(['users' => function ($q) use ($userId){
-                    $q->wherePivot('user_id', $userId);
-                }])->get();
-            // get all devices without users
-            $results2 = $this->createModel()->whereDoesntHave('users');
+            $results1 = $this->createModel()->whereHas('users', function($query) use($userId){
+                $query->where('device_id', '=', $userId);
+            })->get();
 
-            $results = array_merge($results1->toArray(), $results2->toArray());
+            // get all devices without users
+            $results2 = $this->createModel()->whereDoesntHave('users')->get();
+
+            $results = $results1->merge($results2);
         }
 
         return $results;
@@ -56,25 +54,25 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      */
     public function store($data) {
         $model = $this->createModel();
-        $model->name = $data['name'];
+        $model->setAttribute('name', $data['name']);
         $model->save();
     }
 
     /**
      * Update a DeviceModel.
      *
-     * @param DeviceModel $device
+     * @param DeviceModel $model
      * @param array $data
      */
-    public function update($device, $data) {
-        $device->name = $data['name'];
-        $device->save();
+    public function update($model, $data) {
+        $model->setAttribute('name',$data['name']);
+        $model->save();
     }
 
     /**
-     * Delete a DeviceModel
+     * Delete a device
      *
-     * @param DeviceModel $device
+     * @param int $id
      */
     public function deleteById($id) {
         return $this->createModel()->findOrFail($id)->delete();
