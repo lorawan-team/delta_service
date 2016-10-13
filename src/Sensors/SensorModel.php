@@ -14,7 +14,7 @@ class SensorModel extends AbstractModel  implements SensorModelInterface
     protected $dates = ['created_at', 'updated_at'];
     public $timestamps = true;
 
-    public function sensor()
+    public function device()
     {
         return $this->belongsTo('Delta\DeltaService\Devices\DeviceModel', 'device_id', 'id');
     }
