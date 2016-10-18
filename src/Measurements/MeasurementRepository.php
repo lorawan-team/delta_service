@@ -2,8 +2,8 @@
 
 namespace Delta\DeltaService\Measurements;
 
-use Delta\DeltaService\AbstractRepository;
 use DateTime;
+use Delta\DeltaService\AbstractRepository;
 
 class MeasurementRepository extends AbstractRepository implements MeasurementRepositoryInterface
 {
@@ -12,12 +12,15 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
     /**
      * Find all measurements
      *
-     * @param $deviceId
+     * @param $deviceEui
      * @return mixed
      */
-    public function findAll($deviceId) {
-        return $this->createModel()->whereHas('sensor', function($query) use($deviceId){
-            $query->where('device_id', '=', $deviceId);
+    public function findAll($deviceEui)
+    {
+        return $this->createModel()->whereHas('sensor', function ($query) use ($deviceEui) {
+            $query->whereHas('device', function ($query) use ($deviceEui) {
+                $query->where('eui', '=', $deviceEui);
+            });
         })->get();
     }
 
@@ -27,7 +30,8 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
      * @param $id
      * @return mixed
      */
-    public function findById($id) {
+    public function findById($id)
+    {
         return $this->createModel()->findOrFail($id);
     }
 
@@ -37,6 +41,8 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
      */
     public function store($data)
     {
+        //TODO gegevens opslaan kan op het moment door elke gebruiker voor elke tabel gedaan worden, ongeacht of het item daarin aan hun toebehoord. (in andere woorden; er is authenticatie, maar geen authorizatie)
+
         $model = $this->createModel();
         $model->setAttribute('sensor_id', $data['sensor_id']);
         $model->setAttribute('value', $data['value']);
@@ -58,7 +64,8 @@ class MeasurementRepository extends AbstractRepository implements MeasurementRep
      * Soft-delete all measurements that are older then the given date
      * @param DateTime $date
      */
-    public function removeOlderThan(DateTime $date) {
+    public function removeOlderThan(DateTime $date)
+    {
         \DB::table('measurement')->where('created_at', '<', $date->format('Y-m-d H:i:s'))->delete();
     }
 }

@@ -48,10 +48,10 @@ class SensorRepository extends AbstractRepository implements SensorRepositoryInt
      * @param array $data
      */
     public function update($model, $data) {
-        $model->setAttribute('name', $data['name']);
-        $model->setAttribute('device_id', $data['device_id']);
-        $model->setAttribute('alias', $data['alias']);
-        $model->setAttribute('description', $data['description']);
+        $this->addIfExists('name', $data, $model);
+        $this->addIfExists('device_id', $data, $model);
+        $this->addIfExists('alias', $data, $model);
+        $this->addIfExists('description', $data, $model);
         $model->save();
     }
 

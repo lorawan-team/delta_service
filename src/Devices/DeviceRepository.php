@@ -8,6 +8,7 @@ use Delta\DeltaService\Devices\DeviceModel;
 
 class DeviceRepository extends AbstractRepository implements DeviceRepositoryInterface
 {
+
     protected $model = DeviceModel::class;
 
     /**
@@ -54,10 +55,11 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      */
     public function store($data) {
         $model = $this->createModel();
-        $model->setAttribute('name', $data['name']);
+        $model->setAttribute('name',$data['name']);
         $model->setAttribute('alias', $data['alias']);
         $model->setAttribute('token', $data['token']);
         $model->setAttribute('description', $data['description']);
+        $model->setAttribute('uuid', $data['uuid']);
         $model->save();
     }
 
@@ -68,10 +70,12 @@ class DeviceRepository extends AbstractRepository implements DeviceRepositoryInt
      * @param array $data
      */
     public function update($model, $data) {
-        $model->setAttribute('name',$data['name']);
-        $model->setAttribute('alias', $data['alias']);
-        $model->setAttribute('token', $data['token']);
-        $model->setAttribute('description', $data['description']);
+        // TODO array mappen naar model? da's veel sneller.
+        $this->addIfExists('name', $data, $model);
+        $this->addIfExists('alias', $data, $model);
+        $this->addIfExists('token', $data, $model);
+        $this->addIfExists('description', $data, $model);
+        $this->addIfExists('uuid', $data, $model);
         $model->save();
     }
 
